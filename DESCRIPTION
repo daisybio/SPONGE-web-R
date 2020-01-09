@@ -1,6 +1,6 @@
 Package: spongeAPI
 Type: Package
-Title: Tests New R Packages
+Title: User Friendly Application Of The SPONGE API
 Version: 0.1.0
 Author: Elisabeth Pachl <elly.pachl@tum.de>
 Maintainer: Elisabeth Pachl <elly.pachl@tum.de>
