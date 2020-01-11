@@ -17,4 +17,8 @@ Suggests:
 VignetteBuilder: knitr
 Imports: 
     tibble,
-    utils
+    utils,
+    dplyr,
+    RCurl,
+    jsonlite,
+    curl
