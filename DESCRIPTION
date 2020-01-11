@@ -21,4 +21,5 @@ Imports:
     dplyr,
     RCurl,
     jsonlite,
-    curl
+    curl,
+    httr

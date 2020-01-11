@@ -7,16 +7,18 @@
 datasetInformation(disease_name = NULL)
 }
 \arguments{
-\item{disease_name}{The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown. Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").}
+\item{disease_name}{The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
+Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").}
 }
 \value{
 Information about all or dataset disease_name disease_nameas data_frame.
 }
 \description{
-Dataset Information Function
+Get information about all available datasets to start browsing or search for a specific cancer type/dataset.
 }
 \examples{
 datasetInformation("kidney clear cell carcinoma")
+
 \dontrun{
 datasetInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
 }

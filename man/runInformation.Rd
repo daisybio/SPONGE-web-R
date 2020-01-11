@@ -7,7 +7,8 @@
 runInformation(disease_name)
 }
 \arguments{
-\item{disease_name}{Name of the specific cancer type/dataset as string. Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").}
+\item{disease_name}{Name of the specific cancer type/dataset as string.
+Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").}
 }
 \value{
 Run information about dataset disease_name as data_frame.
@@ -17,6 +18,7 @@ Retrieve all used parameters of the SPONGE method to create published results fo
 }
 \examples{
 runInformation("kidney clear cell carcinoma")
+
 \dontrun{
 runInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
 }
