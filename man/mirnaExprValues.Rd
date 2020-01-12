@@ -15,7 +15,7 @@ Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
 \item{hs_number}{A vector of hs_number(s). If hs_number is set, mimat_number must be NULL.}
 }
 \value{
-A data_table with mirna expression values.
+A data_frame with mirna expression values.
 }
 \description{
 Get all expression values for miRNA(s) of interest.

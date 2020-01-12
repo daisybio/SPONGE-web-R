@@ -7,7 +7,7 @@
 #' @param ensg_number A vector of ensg number(s). If ensg_number is set, gene_symbol must be NULL.
 #' @param gene_symbol A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.
 #'
-#' @return A data_table with gene expression values.
+#' @return A data_frame with gene expression values.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -44,7 +44,7 @@ geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
 
   # Create full url
   if (!is.null(ensg_number)){
-   full_url = paste(base_url, "?disease_name=", disease_name,"&ensg_number=", paste(ensg_number, collapse=",", sep=""), sep="")
+    full_url = paste(base_url, "?disease_name=", disease_name,"&ensg_number=", paste(ensg_number, collapse=",", sep=""), sep="")
   } else if(!is.null(gene_symbol)) {
    full_url = paste(base_url, "?disease_name=", disease_name,"&gene_symbol=", paste(gene_symbol, collapse=",", sep=""), sep="")
   } else
@@ -64,12 +64,16 @@ geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
 
   # Determine if a url object returns '404 Not Found'
   if(headers(url_obj)$`content-type` == "application/problem+json")
-   stop(paste("API response is empty. Reason: ", new$detail))
+    stop(paste("API response is empty. Reason: ", new$detail))
   else {
-   # Turn columns to numeric and remove NA values
-   new <- new %>%
-     mutate_at(c( "expr_value"), as.numeric)
-   return(new)
+    # Flatten out nested elements
+    new <- do.call("data.frame", new)
+
+    # Turn columns to numeric and remove NA values
+    new <- new %>%
+      mutate_at(c( "expr_value"), as.numeric) %>%
+      mutate_at(c("dataset", "sample_ID"), as.character)
+    return(new)
   }
 }
 
@@ -82,7 +86,7 @@ geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
 #' @param mimat_number A vector of mimat_number(s). If mimat_number is set, hs_number must be NULL.
 #' @param hs_number A vector of hs_number(s). If hs_number is set, mimat_number must be NULL.
 #'
-#' @return A data_table with mirna expression values.
+#' @return A data_frame with mirna expression values.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
@@ -141,9 +145,13 @@ mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NULL){
   if(headers(url_obj)$`content-type` == "application/problem+json")
     stop(paste("API response is empty. Reason: ", new$detail))
   else {
+    # Flatten out nested elements
+    new <- do.call("data.frame", new)
+
     # Turn columns to numeric and remove NA values
     new <- new %>%
-      mutate_at(c( "expr_value"), as.numeric)
+      mutate_at(c( "expr_value"), as.numeric) %>%
+      mutate_at(c("dataset", "sample_ID"), as.character)
     return(new)
   }
 }
