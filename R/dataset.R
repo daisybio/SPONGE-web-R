@@ -99,9 +99,14 @@ runInformation <- function(disease_name){
   if(headers(url_obj)$`content-type` == "application/problem+json")
     stop(paste("API response is empty. Reason: ", new$detail))
   else {
-    # turn columns to numeric and remove NA values
-    #run_df <- run_df %>%
-    #  mutate_at(c( "dataset_ID"), as.numeric)
+    # Flatten out nested elements
+    new <- do.call("data.frame", new)
+
+    # Turn columns to numeric and remove NA values
+    new <- new %>%
+      mutate_at(c("coefficient_threshold", "dataset.dataset_ID", "f_test", "f_test_p_adj_threshold", "m_max", "min_corr", "number_of_datasets", "number_of_samples", "run_ID"), as.numeric)
+    new <- new %>%
+      mutate_at(c("coefficient_direction", "ks", "log_level"), as.character)
     return(new)
   }
 }

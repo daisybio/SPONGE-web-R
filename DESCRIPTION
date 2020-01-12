@@ -13,7 +13,8 @@ URL: https://github.com/IceQueen1996/spongeAPI
 BugReports: https://github.com/IceQueen1996/spongeAPI/issues
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 Imports: 
     tibble,
