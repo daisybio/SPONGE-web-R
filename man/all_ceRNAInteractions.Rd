@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_ceRNAInteraction.R
 \name{all_ceRNAInteractions}
 \alias{all_ceRNAInteractions}
-\title{Find All Possible ceRNAs}
+\title{Find All Possible ceRNA Interactions}
 \usage{
 all_ceRNAInteractions(
   disease_name = NULL,

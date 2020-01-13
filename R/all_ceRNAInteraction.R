@@ -1,4 +1,4 @@
-#' Find All Possible ceRNAs
+#' Find All Possible ceRNA Interactions
 #'
 #' @description Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type/dataset or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
 #'
