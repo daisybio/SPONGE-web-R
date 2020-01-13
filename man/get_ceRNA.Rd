@@ -11,7 +11,7 @@ get_ceRNA(
   minNodeDegree = NULL,
   minEigenvector = NULL,
   sorting = NULL,
-  descending = NULL,
+  descending = TRUE,
   limit = 100,
   offset = NULL
 )
@@ -44,5 +44,6 @@ A data_frame containing all ceRNAs (genes) satisfying the given filters.
 Get all ceRNAs in a disease of interest (search not for a specific ceRNA, but search for all ceRNAs satisfying filter functions).
 }
 \examples{
-get_ceRNA(disease_name = "kidney clear cell carcinoma", gene_type = "lincRNA", minBetweenness = 1500)
+get_ceRNA(disease_name = "kidney clear cell carcinoma",
+          gene_type = "lincRNA", minBetweenness = 1500)
 }
