@@ -1,1 +1,1 @@
-vignettes/spongeWeb.Rmd
+vignettes/SPONGE.Rmd
