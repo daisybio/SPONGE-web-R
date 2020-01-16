@@ -17,7 +17,7 @@
 #'
 #' @examples
 #' # Get all genes from specific cancer with a minimum number of 150 at significant ceRNA interactions
-#' get_geneCount(disease_name = "kidney clear cell carinoma", minCountSign = 150)
+#' get_geneCount(disease_name = "kidney clear cell carcinoma", minCountSign = 150)
 get_geneCount <- function(disease_name = NULL,
                           ensg_number = NULL,
                           gene_symbol = NULL,

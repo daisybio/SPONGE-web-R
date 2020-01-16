@@ -32,5 +32,5 @@ Number of Times Gene Involved in Complete Network and Significant Interactions.
 }
 \examples{
 # Get all genes from specific cancer with a minimum number of 150 at significant ceRNA interactions
-get_geneCount(disease_name = "kidney clear cell carinoma", minCountSign = 150)
+get_geneCount(disease_name = "kidney clear cell carcinoma", minCountSign = 150)
 }

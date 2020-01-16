@@ -23,4 +23,6 @@ Imports:
     RCurl,
     jsonlite,
     curl,
-    httr
+    httr,
+    ggplot2,
+    reshape2

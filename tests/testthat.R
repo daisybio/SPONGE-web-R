@@ -1,4 +1,4 @@
 library(testthat)
-library(spongeAPI)
+library(spongeWeb)
 
-test_check("spongeAPI")
+test_check("spongeWeb")

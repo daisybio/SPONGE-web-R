@@ -33,11 +33,13 @@ Get all interactions between the given identifiers (ensg_number or gene_symbol).
 }
 \examples{
 get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-                               ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"))
+                               ensg_number = c("ENSG00000259090","ENSG00000217289",
+                               "ENSG00000152284"))
 \dontrun{
 # Do not use both identifiers at the same time
 get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-                               ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"),
+                               ensg_number = c("ENSG00000259090","ENSG00000217289",
+                               "ENSG00000152284"),
                                gene_symbol = c("SEPT7P1","TIGAR"))
 }
 }
