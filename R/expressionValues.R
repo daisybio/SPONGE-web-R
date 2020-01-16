@@ -17,20 +17,20 @@
 #'
 #' @examples
 #' # Retrieve gene expression values for specif genes by ensg_numbers
-#' geneExprValues(disease_name = "kidney clear cell carcinoma",
-#'                ensg_number = c("ENSG00000259090","ENSG00000217289"))
+#' get_geneExprValues(disease_name = "kidney clear cell carcinoma",
+#'                    ensg_number = c("ENSG00000259090","ENSG00000217289"))
 #'
 #' # Retrieve gene expression values for specif genes by gene_symbols
-#' geneExprValues(disease_name = "kidney clear cell carcinoma",
-#'                gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_geneExprValues(disease_name = "kidney clear cell carcinoma",
+#'                    gene_symbol = c("SEPT7P1","TIGAR"))
 #'
 #'  \dontrun{
 #' # Ensg_numbers and gene_symbols together.
-#' geneExprValues(disease_name = "kidney clear cell carcinoma",
-#'                ensg_number = c("ENSG00000259090","ENSG00000217289"),
-#'                gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_geneExprValues(disease_name = "kidney clear cell carcinoma",
+#'                    ensg_number = c("ENSG00000259090","ENSG00000217289"),
+#'                    gene_symbol = c("SEPT7P1","TIGAR"))
 #' }
-geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
+get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -96,20 +96,20 @@ geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
 #'
 #' @examples
 #' # Retrieve gene expression values for specif miRNAs by mimat_numbers
-#' mirnaExprValues(disease_name = "kidney clear cell carcinoma",
-#'                 mimat_number = c("MIMAT0000076", "MIMAT0000261"))
+#' get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
+#'                     mimat_number = c("MIMAT0000076", "MIMAT0000261"))
 #'
 #' # Retrieve gene expression values for specif miRNAs by hs_numbers
-#' mirnaExprValues(disease_name = "kidney clear cell carcinoma",
-#'                 hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"))
+#' get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
+#'                     hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"))
 #'
 #'  \dontrun{
 #' # Mimat_numbers and hs_numbers together.
-#' mirnaExprValues(disease_name = "kidney clear cell carcinoma",
-#'                 mimat_number = c("MIMAT0000076", "MIMAT0000261"),
-#'                 hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"))
+#' get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
+#'                     mimat_number = c("MIMAT0000076", "MIMAT0000261"),
+#'                     hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"))
 #' }
-mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NULL){
+get_mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NULL){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")

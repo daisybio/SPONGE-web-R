@@ -19,15 +19,15 @@
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-#'                            ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"))
+#' get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
+#'                                ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"))
 #'\dontrun{
 #' # Do not use both identifiers at the same time
-#' specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-#'                            ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"),
-#'                            gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
+#'                                ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"),
+#'                                gene_symbol = c("SEPT7P1","TIGAR"))
 #'}
-specific_ceRNAInteractions <- function(disease_name = NULL,
+get_specific_ceRNAInteractions <- function(disease_name = NULL,
                                        ensg_number = NULL,
                                        gene_symbol = NULL,
                                        limit = 100,

@@ -14,12 +14,12 @@
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' datasetInformation("kidney clear cell carcinoma")
+#' get_datasetInformation("kidney clear cell carcinoma")
 #'
 #' \dontrun{
-#' datasetInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
+#' get_datasetInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
 #' }
-datasetInformation <- function(disease_name=NULL) {
+get_datasetInformation <- function(disease_name=NULL) {
   # Base URL path
   base_url = "http://10.162.163.20:5000/dataset"
 
@@ -69,12 +69,12 @@ datasetInformation <- function(disease_name=NULL) {
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' runInformation("kidney clear cell carcinoma")
+#' get_runInformation("kidney clear cell carcinoma")
 #'
 #' \dontrun{
-#' runInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
+#' get_runInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
 #' }
-runInformation <- function(disease_name){
+get_runInformation <- function(disease_name){
   # check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")

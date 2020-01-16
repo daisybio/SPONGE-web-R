@@ -31,11 +31,11 @@
 #' @examples
 #' # Retrieve all possible ceRNAs for gene, identified by ensg_number,
 #' # and threshold for pValue and mscor.
-#' all_ceRNAInteractions(ensg_number=c("ENSG00000259090","ENSG00000217289"),
+#' get_all_ceRNAInteractions(ensg_number=c("ENSG00000259090","ENSG00000217289"),
 #'                       pValue=0.5, pValueDirection="<",
 #'                       mscor=0.006, mscorDirection="<",
 #'                       limit=15, information=FALSE)
-all_ceRNAInteractions <- function(disease_name = NULL,
+get_all_ceRNAInteractions <- function(disease_name = NULL,
                                   ensg_number = NULL,
                                   gene_symbol = NULL,
                                   gene_type = NULL,

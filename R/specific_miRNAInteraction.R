@@ -21,17 +21,17 @@
 #'
 #' @examples
 #' # Retrieve all possible ceRNA interactions where miRNA of interest contribute to
-#' specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
-#'                           mimat_number = c("MIMAT0000076", "MIMAT0000261"),
-#'                           limit = 15, information = FALSE)
+#' get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
+#'                               mimat_number = c("MIMAT0000076", "MIMAT0000261"),
+#'                               limit = 15, information = FALSE)
 #' \dontrun{
 #' # Do not use both possible identifiers at once
-#'   specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
-#'                           mimat_number =c("MIMAT0000076", "MIMAT0000261"),
-#'                           hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"),
-#'                           limit = 15, information = FALSE)
+#' get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
+#'                               mimat_number =c("MIMAT0000076", "MIMAT0000261"),
+#'                               hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"),
+#'                               limit = 15, information = FALSE)
 #'}
-specific_miRNAInteraction <- function(disease_name = NULL,
+get_specific_miRNAInteraction <- function(disease_name = NULL,
                                   mimat_number = NULL,
                                   hs_number = NULL,
                                   limit = 100,

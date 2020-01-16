@@ -17,20 +17,20 @@
 #'
 #' @examples
 #'  # Retrieve gene expression values for specif genes by ensg_numbers
-#' survAna_pValues(disease_name = "kidney clear cell carcinoma",
-#'                ensg_number = c("ENSG00000259090","ENSG00000217289"))
+#' get_survAna_pValues(disease_name = "kidney clear cell carcinoma",
+#'                     ensg_number = c("ENSG00000259090","ENSG00000217289"))
 #'
 #' # Retrieve gene expression values for specif genes by gene_symbols
-#' survAna_pValues(disease_name = "kidney clear cell carcinoma",
-#'                gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_survAna_pValues(disease_name = "kidney clear cell carcinoma",
+#'                     gene_symbol = c("SEPT7P1","TIGAR"))
 #'
 #'  \dontrun{
 #' # Ensg_numbers and gene_symbols together.
-#' survAna_pValues(disease_name = "kidney clear cell carcinoma",
-#'                ensg_number = c("ENSG00000259090","ENSG00000217289"),
-#'                gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_survAna_pValues(disease_name = "kidney clear cell carcinoma",
+#'                     ensg_number = c("ENSG00000259090","ENSG00000217289"),
+#'                     gene_symbol = c("SEPT7P1","TIGAR"))
 #' }
-survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = NULL){
+get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = NULL){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -99,16 +99,16 @@ survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = NULL
 #'
 #' @examples
 #'  # Retrieve gene expression values for specif genes by ensg_numbers and specific patient/sample
-#' survAna_rates(disease_name="kidney clear cell carcinoma",
-#'               ensg_number=c("ENSG00000259090", "ENSG00000217289"),
-#'               sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
+#' get_survAna_rates(disease_name="kidney clear cell carcinoma",
+#'                   ensg_number=c("ENSG00000259090", "ENSG00000217289"),
+#'                   sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
 #'  \dontrun{
 #' # Ensg_numbers and gene_symbols together.
-#' survAna_pValues(disease_name = "kidney clear cell carcinoma",
-#'                ensg_number = c("ENSG00000259090","ENSG00000217289"),
-#'                gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_survAna_pValues(disease_name = "kidney clear cell carcinoma",
+#'                     ensg_number = c("ENSG00000259090","ENSG00000217289"),
+#'                     gene_symbol = c("SEPT7P1","TIGAR"))
 #' }
-survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NULL, sample_ID = NULL){
+get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NULL, sample_ID = NULL){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -174,13 +174,13 @@ survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NULL, 
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
-#'                           sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
+#' get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
+#'                              sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
 #' \dontrun{
 #' # Do not run function without disease.
-#' survAna_sampleInformation(sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
+#' get_survAna_sampleInformation(sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
 #' }
-survAna_sampleInformation <- function(disease_name, sample_ID = NULL){
+get_survAna_sampleInformation <- function(disease_name, sample_ID = NULL){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")

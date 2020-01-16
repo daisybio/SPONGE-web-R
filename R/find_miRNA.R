@@ -17,8 +17,8 @@
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' sponge_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"))
-sponge_miRNA <- function(disease_name,
+#' get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"))
+get_sponged_miRNA <- function(disease_name,
                        ensg_number = NULL,
                        gene_symbol = NULL,
                        gene_type = NULL){

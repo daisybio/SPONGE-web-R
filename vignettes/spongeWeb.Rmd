@@ -42,4 +42,32 @@ By help of these tools, third party developers like data scientists and biomedic
 
 ## General Workflow
 
+<img src="https://raw.githubusercontent.com/IceQueen1996/spongeAPI/master/vignettes/proj_structure.PNG" alt="Structure SPONGE-Web project" style="width: 600px; display: block; margin-left: auto; margin-right: auto;"/>
+
 Structure of the SPONGE-Web project. A MySQL database contains all data of the different cancer types, with information about the genes, miRNAs and the ceRNA network. The API (immplemented with the Flask framework) controls the database and sends requests and accepts the answer. The API processes the data and sends it to the frontend (third party user like a R or Python package or website). At the website several visualization tools are provided. The database and the API represent the backend and the website, thired party user represent the frontend.
+
+## How to start requests?
+To start with further analysis with SPONGE data, it is important to get an overview about the available datasets/disease_types and the number of ceRNA interactions.
+
+<img src="https://raw.githubusercontent.com/IceQueen1996/spongeAPI/master/vignettes/geneCounts.PNG" alt="Structure SPONGE-Web project" style="width: 600px; display: block; margin-left: auto; margin-right: auto;"/>
+
+```{r eval=FALSE}
+get_datasetInformation()
+```
+
+To retrieve all used parameters of the SPONGE method to re-create published results for the cancer type/dataset of interest, use the following function.
+
+```{r eval=FALSE}
+get_runInformation(disease_name = "kidney clear cell carcinoma")
+```
+
+Another way to get an overview of the results is to search for a specific gene and get and idea in which ceRNA interaction network the gene of interest contributes most to.
+
+```{r eval=FALSE}
+get_geneCount(gene_symbol = c("CCD4"))
+```
+
+## Session Info
+```{r}
+sessionInfo()
+```
