@@ -15,7 +15,7 @@ Fuzzy search is available.}
 \item{gene_symbol}{A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.}
 }
 \value{
-A data_frame with gene information and corresponding log rank test pValue. For raw data use function \code{\link[spongeAPI]{survAna_rates}}
+A data_frame with gene information and corresponding log rank test pValue. For raw data use function \code{\link[spongeWeb]{get_survAna_rates}}
 }
 \description{
 Retrieve pValues from log rank test based on raw survival analysis data

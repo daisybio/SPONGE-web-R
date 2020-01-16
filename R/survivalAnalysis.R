@@ -7,7 +7,7 @@
 #' @param ensg_number A vector of ensg number(s). If ensg_number is set, gene_symbol must be NULL.
 #' @param gene_symbol A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.
 #'
-#' @return A data_frame with gene information and corresponding log rank test pValue. For raw data use function \code{\link[spongeAPI]{survAna_rates}}
+#' @return A data_frame with gene information and corresponding log rank test pValue. For raw data use function \code{\link[spongeWeb]{get_survAna_rates}}
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
