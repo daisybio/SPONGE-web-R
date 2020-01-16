@@ -30,7 +30,7 @@ Information about expression value of the gene (FALSE = underexpression, gene ex
 Get all raw survival analysis data for kaplan meier plots and
 }
 \examples{
- # Retrieve gene expression values for specif genes by ensg_numbers and specific patient/sample
+ # Retrieve survival rates for specif genes by ensg_numbers and specific patient/sample
 get_survAna_rates(disease_name="kidney clear cell carcinoma",
                   ensg_number=c("ENSG00000259090", "ENSG00000217289"),
                   sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))

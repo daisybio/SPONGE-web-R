@@ -64,7 +64,94 @@ get_runInformation(disease_name = "kidney clear cell carcinoma")
 Another way to get an overview of the results is to search for a specific gene and get and idea in which ceRNA interaction network the gene of interest contributes most to.
 
 ```{r eval=FALSE}
-get_geneCount(gene_symbol = c("CCD4"))
+get_geneCount(gene_symbol = c("HOXA1"))
+```
+
+\tiny
+```{r, echo=FALSE, results='asis'}
+knitr::kable(get_geneCount(gene_symbol = c("HOXA1")))
+```
+\normalsize
+
+```{r fig.width = 8, fig.height = 5, warning=FALSE, message=FALSE, error=FALSE}
+library(ggplot2)
+library(reshape2)
+geneCounts <- get_geneCount(gene_symbol = c("HOXA1"))[c("count_all", "count_sign", "run.dataset.disease_name")]
+geneCounts.m <- melt(geneCounts, id.vars='run.dataset.disease_name')
+ggplot(geneCounts.m, aes(run.dataset.disease_name, value)) +   
+     geom_bar(aes(fill = variable), position = "dodge", stat="identity") +
+     theme(axis.text.x = element_text(angle=90)) +
+     labs(y= "counts", x = "disease name")
+```
+
+## How to find a subnetwork?
+To find a subnetwork of nodes of interest use the functions:
+Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type/dataset or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
+```{r eval=FALSE}
+# Retrieve all possible ceRNAs for gene, identified by ensg_number,
+# and threshold for pValue and mscor.
+get_all_ceRNAInteractions(ensg_number=c("ENSG00000259090","ENSG00000217289"),
+                          pValue=0.5, pValueDirection="<",
+                          mscor=0.006, mscorDirection="<",
+                          limit=15, information=FALSE)
+```
+
+Get all ceRNAs in a disease of interest (search not for a specific ceRNA, but search for all ceRNAs satisfying filter functions).
+
+```{r eval=FALSE}
+get_ceRNA(disease_name = "kidney clear cell carcinoma",
+          gene_type = "lincRNA", minBetweenness = 1500)
+```
+
+Get all interactions between the given identifiers (ensg_number or gene_symbol).
+
+```{r eval=FALSE}
+get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
+                                ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"))
+```
+
+## How to find sponged miRNA?
+Find sponged miRNAs (the reason for a edge between two ceRNAs) with
+```{r eval=FALSE}
+get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"))
+```
+
+or find a miRNA induced ceRNA interaction with
+
+```{r eval=FALSE}
+# Retrieve all possible ceRNA interactions where miRNA(s) of interest contribute to
+get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
+                              mimat_number = c("MIMAT0000076", "MIMAT0000261"),
+                              limit = 15, information = FALSE)
+```
+
+## Further Information and Analysis
+The database also contains information about the raw expression values and survival analyis data, which can be used to for Kaplan-Meyer-Plots (KMPs) for example. These information can be adressed with package functions.
+To retrieve expression data use 
+
+```{r eval=FALSE}
+# Retrieve gene expression values for specif genes by ensg_numbers
+get_geneExprValues(disease_name = "kidney clear cell carcinoma",
+                   ensg_number = c("ENSG00000259090","ENSG00000217289"))
+# Retrieve gene expression values for specif miRNAs by mimat_numbers
+get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
+                    mimat_number = c("MIMAT0000076", "MIMAT0000261"))
+```
+
+To get surival analysis data use the function 
+
+```{r eval=FALSE}
+get_survAna_rates(disease_name="kidney clear cell carcinoma",
+                 ensg_number=c("ENSG00000259090", "ENSG00000217289"),
+                 sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
+```
+
+It returs a data_frame with gene and patient/sample information and the "group information" encoded by column "overexpressed". Information about expression value of the gene (FALSE = underexpression, gene expression <= mean gene expression over all samples, TRUE = overexpression, gene expression >= mean gene expression over all samples)
+
+For furhter patient/sample informations:
+```{r eval=FALSE}
+get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
+                              sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
 ```
 
 ## Session Info
