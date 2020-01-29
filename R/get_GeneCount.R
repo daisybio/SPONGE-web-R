@@ -27,7 +27,7 @@ get_geneCount <- function(disease_name = NULL,
   # all checks will be done from the API and its unit tests!
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/getGeneCount?"
+  base_url = paste(pkg.env$API.url, "/getGeneCount?", sep="")
   full_url = base_url
 
   # Create full url

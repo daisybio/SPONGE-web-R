@@ -41,7 +41,7 @@ get_specific_miRNAInteraction <- function(disease_name = NULL,
   # all checks will be done from the API and its unit tests!
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/miRNAInteraction/findSpecific?"
+  base_url = paste(pkg.env$API.url, "/miRNAInteraction/findSpecific?", sep="")
   full_url = base_url
 
   # Create full url

@@ -21,7 +21,7 @@
 #' }
 get_datasetInformation <- function(disease_name=NULL) {
   # Base URL path
-  base_url = "http://10.162.163.20:5000/dataset"
+  base_url = paste(pkg.env$API.url, "/dataset", sep="")
 
   # Create full url
   if (!is.null(disease_name)){
@@ -80,7 +80,7 @@ get_runInformation <- function(disease_name){
     stop("Required parameter disease_name is not given!")
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/dataset/runInformation"
+  base_url = paste(pkg.env$API.url, "/dataset/runInformation", sep="")
   full_url = paste0(base_url, "?disease_name=", disease_name)
 
   # Encode the URL with characters for each space.

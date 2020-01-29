@@ -54,7 +54,7 @@ get_all_ceRNAInteractions <- function(disease_name = NULL,
   # all checks will be done from the API and its unit tests!
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/ceRNAInteraction/findAll?"
+  base_url = paste(pkg.env$API.url, "/ceRNAInteraction/findAll?", sep="")
   full_url = base_url
 
   # Create full url

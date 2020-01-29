@@ -40,7 +40,7 @@ get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = 
     stop("More than one identification paramter is given. Please choose one out of ensg number or gene symbol.")
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/survivalAnalysis/getPValues"
+  base_url = paste(pkg.env$API.url, "/survivalAnalysis/getPValues", sep="")
 
   # Create full url
   if (!is.null(ensg_number)){
@@ -118,7 +118,7 @@ get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NU
     stop("More than one identification paramter is given. Please choose one out of ensg number or gene symbol.")
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/survivalAnalysis/getRates"
+  base_url = paste(pkg.env$API.url, "/survivalAnalysis/getRates", sep="")
 
   # Create full url
   if (!is.null(ensg_number)){
@@ -186,7 +186,7 @@ get_survAna_sampleInformation <- function(disease_name, sample_ID = NULL){
     stop("Required parameter disease_name is not given!")
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/survivalAnalysis/sampleInformation"
+  base_url = paste(pkg.env$API.url, "/survivalAnalysis/sampleInformation", sep="")
 
   # Create full url
   full_url = paste(base_url, "?disease_name=", disease_name, sep="")

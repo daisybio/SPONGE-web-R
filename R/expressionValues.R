@@ -40,7 +40,7 @@ get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NU
     stop("More than one identification paramter is given. Please choose one out of ensg number or gene symbol.")
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/exprValue/getceRNA"
+  base_url = paste(pkg.env$API.url, "/exprValue/getceRNA", sep="")
 
   # Create full url
   if (!is.null(ensg_number)){
@@ -119,7 +119,7 @@ get_mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NU
     stop("More than one identification paramter is given. Please choose one out of mimat_number or hs_number.")
 
   # Base URL path
-  base_url = "http://10.162.163.20:5000/exprValue/getmirNA"
+  base_url = paste(pkg.env$API.url, "/exprValue/getmirNA", sep="")
 
   # Create full url
   if (!is.null(mimat_number)){
