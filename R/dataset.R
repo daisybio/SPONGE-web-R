@@ -5,7 +5,7 @@
 #' @param disease_name The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
 #'                     Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
 #'
-#' @return Information about all or dataset disease_name disease_nameas data_frame.
+#' @return Information about all or specific dataset as data_frame.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
