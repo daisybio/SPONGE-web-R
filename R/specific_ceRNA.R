@@ -26,7 +26,7 @@
 #'
 #' @examples
 #' get_ceRNA(disease_name = "kidney clear cell carcinoma",
-#'           gene_type = "lincRNA", minBetweenness = 1500)
+#'           gene_type = "lincRNA", minBetweenness = 0.8)
 get_ceRNA <- function(disease_name,
                       gene_type = NULL,
                       minBetweenness = NULL,

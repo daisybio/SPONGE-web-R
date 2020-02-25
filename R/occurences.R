@@ -6,8 +6,8 @@
 #'                     Fuzzy search available.
 #' @param mimat_number A vector of mimat_number(s). If mimat_number is set, hs_number must be NULL.
 #' @param hs_number A vector of hs_number(s). If hs_number is set, mimat_number must be NULL.
-#' @param occurences Threshold of amount of contributions a miRNA should have to be considered.
-#' @param sorting Possibilities for sorting of the results. Possible values are "pValue", "mscor" or S"correlation".
+#' @param occurences Threshold of amount of contributions a miRNA should be considered.
+#' @param sorting Possibilities for sorting of the results. Possible values are "pValue", "mscor" or "correlation".
 #' @param descending Descending (TRUE, default) or ascending (FALSE) ordering of the results.
 #' @param limit Number of results that should be shown. Default value is 100 and can be up to 1000.
 #'              For more results please use batches, the provided offset parameter or download the whole dataset.
