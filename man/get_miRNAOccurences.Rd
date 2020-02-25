@@ -23,9 +23,9 @@ Fuzzy search available.}
 
 \item{hs_number}{A vector of hs_number(s). If hs_number is set, mimat_number must be NULL.}
 
-\item{occurences}{Threshold of amount of contributions a miRNA should have to be considered.}
+\item{occurences}{Threshold of amount of contributions a miRNA should be considered.}
 
-\item{sorting}{Possibilities for sorting of the results. Possible values are "pValue", "mscor" or S"correlation".}
+\item{sorting}{Possibilities for sorting of the results. Possible values are "pValue", "mscor" or "correlation".}
 
 \item{descending}{Descending (TRUE, default) or ascending (FALSE) ordering of the results.}
 

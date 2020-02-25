@@ -45,5 +45,5 @@ Get all ceRNAs in a disease of interest (search not for a specific ceRNA, but se
 }
 \examples{
 get_ceRNA(disease_name = "kidney clear cell carcinoma",
-          gene_type = "lincRNA", minBetweenness = 1500)
+          gene_type = "lincRNA", minBetweenness = 0.8)
 }
