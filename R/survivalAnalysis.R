@@ -79,7 +79,7 @@ get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = 
 
 #' Survival Analysis Raw Data
 #'
-#' @description Get all raw survival analysis data for kaplan meier plots and
+#' @description Get all raw survival analysis data for kaplan meier plots.
 #'
 #' @param disease_name The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
 #'                     Fuzzy search is available.
@@ -165,7 +165,7 @@ get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NU
 #'                     Fuzzy search is available.
 #' @param sample_ID A vector of sample_ID of the patient/sample of interest.
 #'
-#' @return A data_frame with clinal date of all available or specific sample/patient.
+#' @return A data_frame with clinical date of all available or specific sample/patient.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON

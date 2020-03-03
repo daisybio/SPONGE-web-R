@@ -11,7 +11,7 @@
 #' @param offset Starting point from where results should be shown.
 #' @param information All available information about miRNA displayed (TRUE) or just ensg number (FALSE, default).
 #'
-#' @return A data_frame containing all ceRNA interactions fitting the paramters.
+#' @return A data_frame containing all ceRNA interactions fitting the parameters.
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
