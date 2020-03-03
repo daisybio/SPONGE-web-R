@@ -11,7 +11,7 @@ get_datasetInformation(disease_name = NULL)
 Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").}
 }
 \value{
-Information about all or dataset disease_name disease_nameas data_frame.
+Information about all or specific dataset as data_frame.
 }
 \description{
 Get information about all available datasets to start browsing or search for a specific cancer type/dataset.

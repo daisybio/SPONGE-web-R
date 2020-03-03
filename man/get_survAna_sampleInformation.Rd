@@ -13,7 +13,7 @@ Fuzzy search is available.}
 \item{sample_ID}{A vector of sample_ID of the patient/sample of interest.}
 }
 \value{
-A data_frame with clinal date of all available or specific sample/patient.
+A data_frame with clinical date of all available or specific sample/patient.
 }
 \description{
 Clinical Data For Samples/Patients

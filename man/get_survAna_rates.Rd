@@ -27,7 +27,7 @@ Information about expression value of the gene (FALSE = underexpression, gene ex
                                                 TRUE = overexpression, gene expression >= mean gene expression over all samples)
 }
 \description{
-Get all raw survival analysis data for kaplan meier plots and
+Get all raw survival analysis data for kaplan meier plots.
 }
 \examples{
  # Retrieve survival rates for specif genes by ensg_numbers and specific patient/sample

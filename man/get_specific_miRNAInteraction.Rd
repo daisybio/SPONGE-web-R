@@ -29,7 +29,7 @@ For more results please use batches, the provided offset parameter or download t
 \item{information}{All available information about miRNA displayed (TRUE) or just ensg number (FALSE, default).}
 }
 \value{
-A data_frame containing all ceRNA interactions fitting the paramters.
+A data_frame containing all ceRNA interactions fitting the parameters.
 }
 \description{
 Get all ceRNA interactions where miRNA(s) of interest (different identifiers available - e.g. hs number or mimat number) contribute to.
