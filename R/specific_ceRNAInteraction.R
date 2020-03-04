@@ -6,6 +6,8 @@
 #'                     Fuzzy search available.
 #' @param ensg_number A vector of ensg number(s). If ensg number is set, gene symbol and gene type must be NULL. One of the three identifiers must be provided.
 #' @param gene_symbol A vector of gene symbol(s). If gene symbol is set, ensg number and gene type must be NULL. One of the three identifiers must be provided.
+#' @param pValue Threshold of the FDR adjusted p-value. Default is 0.05.
+#' @param pValueDirection Direction of the FDR adjusted p-value threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".
 #' @param limit Number of results that should be shown. Default value is 100 and can be up to 1000.
 #'              For more results please use batches, the provided offset parameter or download the whole dataset.
 #' @param offset Starting point from where results should be shown.
@@ -19,19 +21,20 @@
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-#'                                ensg_number = c("ENSG00000259090","ENSG00000217289",
-#'                                "ENSG00000152284"))
+#' get_specific_ceRNAInteractions(disease_name = "pancancer",
+#'                                gene_symbol = c("VCAN","FN1"),
+#'                                pValue = 0.05)
 #'\dontrun{
 #' # Do not use both identifiers at the same time
-#' get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-#'                                ensg_number = c("ENSG00000259090","ENSG00000217289",
-#'                                "ENSG00000152284"),
-#'                                gene_symbol = c("SEPT7P1","TIGAR"))
+#' get_specific_ceRNAInteractions(disease_name = "pancancer",
+#'                                ensg_number = c("ENSG00000115414","ENSG00000038427"),
+#'                                gene_symbol = c("VCAN","FN1"))
 #'}
 get_specific_ceRNAInteractions <- function(disease_name = NULL,
                                        ensg_number = NULL,
                                        gene_symbol = NULL,
+                                       pValue = 0.05,
+                                       pValueDirection = "<",
                                        limit = 100,
                                        offset = NULL){
   # all checks will be done from the API and its unit tests!
@@ -49,6 +52,15 @@ get_specific_ceRNAInteractions <- function(disease_name = NULL,
   }
   if(!is.null(gene_symbol)) {
     full_url = paste(full_url, "gene_symbol=", paste(gene_symbol, collapse=",", sep=""), "&", sep="")
+  }
+  if(!is.null(pValue)){
+    full_url = paste(full_url, "pValue=", pValue,"&", sep="")
+  }
+  if(!is.null(pValueDirection)){
+    if(pValueDirection %in% c("<",">"))
+      full_url <- paste(full_url, "pValueDirection=", pValueDirection, "&", sep="")
+    else
+      stop(paste("pValueDirection:", pValueDirection," is not an allowed value. Please check the help page for further information."))
   }
   if (!is.null(limit)){
     full_url <- paste(full_url, "limit=", limit, "&", sep="")
