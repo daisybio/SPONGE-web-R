@@ -84,8 +84,8 @@ ggplot(geneCounts.m, aes(run.dataset.disease_name, value)) +
      labs(y= "counts", x = "disease name")
 ```
 
-## How to find a subnetwork?
-To find a subnetwork of nodes of interest use the functions:
+## How to find a su bnetwork?
+To find a su bnetwork of nodes of interest use the functions:
 Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type/dataset or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
 ```{r eval=FALSE}
 # Retrieve all possible ceRNAs for gene, identified by ensg_number,
@@ -138,7 +138,7 @@ get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
                     mimat_number = c("MIMAT0000076", "MIMAT0000261"))
 ```
 
-To get surival analysis data use the function 
+To get survival analysis data use the function 
 
 ```{r eval=FALSE}
 get_survAna_rates(disease_name="kidney clear cell carcinoma",
@@ -148,7 +148,7 @@ get_survAna_rates(disease_name="kidney clear cell carcinoma",
 
 It returs a data_frame with gene and patient/sample information and the "group information" encoded by column "overexpressed". Information about expression value of the gene (FALSE = underexpression, gene expression <= mean gene expression over all samples, TRUE = overexpression, gene expression >= mean gene expression over all samples)
 
-For furhter patient/sample informations:
+For further patient/sample information:
 ```{r eval=FALSE}
 get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
                               sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
@@ -157,4 +157,11 @@ get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
 ## Session Info
 ```{r}
 sessionInfo()
+```
+
+## Citation
+## Citation
+If you use any results from spongeWeb, please cite as follow:
+```{r}
+Pachl, E., Hoffmann, M., Stiegler, V., Hartung, M., Schulz, M. H., List, M., SPONGE-web: A pan-cancer resource for competing endogenous RNA interactions (manuscript in preparation)
 ```
