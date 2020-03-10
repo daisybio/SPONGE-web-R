@@ -8,7 +8,8 @@ get_sponged_miRNA(
   disease_name,
   ensg_number = NULL,
   gene_symbol = NULL,
-  gene_type = NULL
+  gene_type = NULL,
+  between = FALSE
 )
 }
 \arguments{
@@ -20,6 +21,9 @@ Fuzzy search available.}
 \item{gene_symbol}{A vector of gene symbol(s). If gene symbol is set, ensg number and gene type must be NULL. One of the three identifiers must be provided.}
 
 \item{gene_type}{Defines the type of gene of interest. One out of [3prime_overlapping_ncRNA, antisense, antisense_RNA, bidirectional_promoter_lncRNA, IG_C_gene, IG_C_pseudogene, IG_V_gene, IG_V_pseudogene, lincRNA, macro_lncRNA, miRNA, misc_RNA, Mt_rRNA, polymorphic_pseudogene, processed_pseudogene, processed_transcript, protein_coding, pseudogene, ribozyme, rRNA, rRNA_pseudogene, scaRNA, scRNA, sense_intronic, sense_overlapping, snoRNA, snRNA, TEC, TR_C_gene, TR_V_gene, TR_V_pseudogene, transcribed_processed_pseudogene, transcribed_unitary_pseudogene, transcribed_unprocessed_pseudogene, translated_processed_pseudogene, unitary_pseudogene, unprocessed_pseudogene, vaultRNA].}
+
+\item{between}{If false (default), all interactions where one of the interaction partners fits the given genes of interest
+will be considered. If true, just interactions between the genes of interest will be considered.}
 }
 \value{
 A data_frame containing all found miRNAs.
@@ -28,5 +32,5 @@ A data_frame containing all found miRNAs.
 Get all miRNAs that contribute to all interactions between the given identifiers (ensg_number or gene_symbol).
 }
 \examples{
-get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"))
+get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"), between=TRUE)
 }
