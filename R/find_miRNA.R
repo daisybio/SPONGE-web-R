@@ -7,6 +7,8 @@
 #' @param ensg_number A vector of ensg number(s). If ensg number is set, gene symbol and gene type must be NULL. One of the three identifiers must be provided.
 #' @param gene_symbol A vector of gene symbol(s). If gene symbol is set, ensg number and gene type must be NULL. One of the three identifiers must be provided.
 #' @param gene_type Defines the type of gene of interest. One out of [3prime_overlapping_ncRNA, antisense, antisense_RNA, bidirectional_promoter_lncRNA, IG_C_gene, IG_C_pseudogene, IG_V_gene, IG_V_pseudogene, lincRNA, macro_lncRNA, miRNA, misc_RNA, Mt_rRNA, polymorphic_pseudogene, processed_pseudogene, processed_transcript, protein_coding, pseudogene, ribozyme, rRNA, rRNA_pseudogene, scaRNA, scRNA, sense_intronic, sense_overlapping, snoRNA, snRNA, TEC, TR_C_gene, TR_V_gene, TR_V_pseudogene, transcribed_processed_pseudogene, transcribed_unitary_pseudogene, transcribed_unprocessed_pseudogene, translated_processed_pseudogene, unitary_pseudogene, unprocessed_pseudogene, vaultRNA].
+#' @param between If false (default), all interactions where one of the interaction partners fits the given genes of interest
+#'                will be considered. If true, just interactions between the genes of interest will be considered.
 #'
 #' @return A data_frame containing all found miRNAs.
 #' @export
@@ -17,11 +19,12 @@
 #' @importFrom httr GET content headers
 #'
 #' @examples
-#' get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"))
+#' get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"), between=TRUE)
 get_sponged_miRNA <- function(disease_name,
                        ensg_number = NULL,
                        gene_symbol = NULL,
-                       gene_type = NULL){
+                       gene_type = NULL,
+                       between = FALSE){
 
   # all checks will be done from the API and its unit tests!
 
@@ -51,6 +54,12 @@ get_sponged_miRNA <- function(disease_name,
     else
       stop(paste("Gene_type:", gene_type," is not an allowed value. Please check the help page for further information."))
   }
+  if(!is.logical(between)){
+    stop(paste("Between parameter is not logical!"))
+  } else {
+    full_url <- paste(full_url, "between=", between, "&", sep="")
+  }
+
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
