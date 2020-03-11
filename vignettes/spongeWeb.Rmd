@@ -47,7 +47,7 @@ By help of these tools, third party developers like data scientists and biomedic
 Structure of the SPONGE-Web project. A MySQL database contains all data of the different cancer types, with information about the genes, miRNAs and the ceRNA network. The API (immplemented with the Flask framework) controls the database and sends requests and accepts the answer. The API processes the data and sends it to the frontend (third party user like a R or Python package or website). At the website several visualization tools are provided. The database and the API represent the backend and the website, third party user represent the frontend.
 
 ## How to start requests?
-To start with further analysis with SPONGE data, it is important to get an overview about the available datasets/disease_types and the number of ceRNA interactions.
+To start with further analysis with SPONGE data, it is important to get an overview about the available disease_types and the number of ceRNA interactions. This can be retrieved with:
 
 <img src="https://raw.githubusercontent.com/biomedbigdata/SPONGE-web-R/master/vignettes/geneCounts.png" alt="Structure SPONGE-Web project" style="width: 500px; display: block; margin-left: auto; margin-right: auto;"/>
 
@@ -55,13 +55,13 @@ To start with further analysis with SPONGE data, it is important to get an overv
 get_datasetInformation()
 ```
 
-To retrieve all used parameters of the SPONGE method to re-create published results for the cancer type/dataset of interest, use the following function.
+To retrieve all used parameters of the SPONGE method to re-create published results for the cancer type of interest, use the following function:
 
 ```{r eval=FALSE}
 get_runInformation(disease_name = "kidney clear cell carcinoma")
 ```
 
-Another way to get an overview of the results is to search for a specific gene and get and idea in which ceRNA interaction network the gene of interest contributes most to.
+Another way to get an overview of the results is to search for a specific gene and get an idea in which ceRNA interaction network the gene of interest contributes most to.
 
 ```{r eval=FALSE}
 get_geneCount(gene_symbol = c("HOXA1"))
@@ -84,9 +84,9 @@ ggplot(geneCounts.m, aes(run.dataset.disease_name, value)) +
      labs(y= "counts", x = "disease name")
 ```
 
-## How to find a su bnetwork?
+## How to find a subnetwork?
 To find a su bnetwork of nodes of interest use the functions:
-Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type/dataset or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
+Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
 ```{r eval=FALSE}
 # Retrieve all possible ceRNAs for gene, identified by ensg_number,
 # and threshold for pValue and mscor.
