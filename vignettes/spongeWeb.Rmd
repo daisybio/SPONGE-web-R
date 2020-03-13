@@ -85,14 +85,12 @@ ggplot(geneCounts.m, aes(run.dataset.disease_name, value)) +
 ```
 
 ## How to find a subnetwork?
-To find a su bnetwork of nodes of interest use the functions:
-Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
+To find a sub network of nodes of interest use the functions: Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
 ```{r eval=FALSE}
 # Retrieve all possible ceRNAs for gene, identified by ensg_number,
 # and threshold for pValue and mscor.
-get_all_ceRNAInteractions(ensg_number=c("ENSG00000259090","ENSG00000217289"),
-                          pValue=0.5, pValueDirection="<",
-                          mscor=0.006, mscorDirection="<",
+get_all_ceRNAInteractions(disease_name = "pancancer", ensg_number=c("ENSG00000259090","ENSG00000217289"),
+                          pValue=0.05, pValueDirection="<",
                           limit=15, information=FALSE)
 ```
 
@@ -100,20 +98,20 @@ Get all ceRNAs in a disease of interest (search not for a specific ceRNA, but se
 
 ```{r eval=FALSE}
 get_ceRNA(disease_name = "kidney clear cell carcinoma",
-          gene_type = "lincRNA", minBetweenness = 1500)
+          gene_type = "lincRNA", minBetweenness = 0.8)
 ```
 
 Get all interactions between the given identifiers (ensg_number or gene_symbol).
 
 ```{r eval=FALSE}
-get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-                                ensg_number = c("ENSG00000259090","ENSG00000217289","ENSG00000152284"))
+get_specific_ceRNAInteractions(disease_name = "pancancer",
+                                gene_symbol = c("PTENP1","VCAN","FN1")
 ```
 
 ## How to find sponged miRNA?
 Find sponged miRNAs (the reason for a edge between two ceRNAs) with
 ```{r eval=FALSE}
-get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"))
+get_sponged_miRNA(disease_name="kidney", gene_symbol = c("TCF7L1", "SEMA4B"), between=True)
 ```
 
 or find a miRNA induced ceRNA interaction with
@@ -161,6 +159,6 @@ sessionInfo()
 
 ## Citation
 If you use any results from spongeWeb, please cite as follow:
-```{r}
-Hoffmann M., Pachl E., Hartung M., Stiegler V., Baumbach J., Schulz M., List M., SPONGE-web: A pan-cancer resource for competing endogenous RNA interactions (manuscript in preparation)
+```{r eval=FALSE}
+Pachl E., Hoffmann M., Hartung M., Stiegler V., Baumbach J., Schulz M., List M., SPONGE-web: A pan-cancer resource for competing endogenous RNA interactions (manuscript in preparation)
 ```
