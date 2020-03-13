@@ -22,8 +22,7 @@
 #'
 #' @examples
 #' get_specific_ceRNAInteractions(disease_name = "pancancer",
-#'                                gene_symbol = c("VCAN","FN1"),
-#'                                pValue = 0.05)
+#'              gene_symbol = c("PTENP1","VCAN","FN1"))
 #'\dontrun{
 #' # Do not use both identifiers at the same time
 #' get_specific_ceRNAInteractions(disease_name = "pancancer",

@@ -1,3 +1,3 @@
 pkg.env <- new.env(parent = emptyenv())
 
-pkg.env$API.url <- "http://10.162.163.20:5000"
+pkg.env$API.url <- "https://exbio.wzw.tum.de/sponge-api"
