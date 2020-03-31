@@ -10,7 +10,7 @@
 #' @param minBetweenness Threshold of the betweenness.
 #' @param minNodeDegree Threshold of the degree.
 #' @param minEigenvector Threshold of the eigenvektor.
-#' @param sorting Possibilities for sorting of the results. Possible values are "pValue", "mscor" or "correlation".
+#' @param sorting Possibilities for sorting of the results. Possible values are "degree", "betweenness" or "eigenvector".
 #' @param descending Descending (TRUE, default) or ascending (FALSE) ordering of the results.
 #' @param limit Number of results that should be shown. Default value is 100 and can be up to 1000.
 #'              For more results please use batches, the provided offset parameter or download the whole dataset.
@@ -68,7 +68,7 @@ get_ceRNA <- function(disease_name,
     full_url <- paste(full_url, "minEigenvector=", minEigenvector, "&", sep="")
   }
   if(!is.null(sorting)){
-    if(sorting %in% c("pValue", "mscor", "correlation"))
+    if(sorting %in% c("degree", "betweenness", "eigenvector"))
       full_url <- paste(full_url, "sorting=", sorting, "&", sep="")
     else
       stop(paste("sorting:", sorting," is not an allowed value. Please check the help page for further information."))

@@ -1,4 +1,4 @@
-#' Dataset Information Function
+#' Overall Count for Interactions and miRNAs
 #'
 #' @description Function return current statistic about database - amount of shared miRNA, significant and insignificant interactions per dataset
 #'
