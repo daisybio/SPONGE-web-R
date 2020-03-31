@@ -2,7 +2,7 @@
 % Please edit documentation in R/overview.R
 \name{get_overallCounts}
 \alias{get_overallCounts}
-\title{Dataset Information Function}
+\title{Overall Count for Interactions and miRNAs}
 \usage{
 get_overallCounts()
 }
