@@ -28,7 +28,7 @@ Fuzzy search available.}
 
 \item{minEigenvector}{Threshold of the eigenvektor.}
 
-\item{sorting}{Possibilities for sorting of the results. Possible values are "pValue", "mscor" or "correlation".}
+\item{sorting}{Possibilities for sorting of the results. Possible values are "degree", "betweenness" or "eigenvector".}
 
 \item{descending}{Descending (TRUE, default) or ascending (FALSE) ordering of the results.}
 
