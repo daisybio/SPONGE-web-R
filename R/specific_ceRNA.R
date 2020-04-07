@@ -106,7 +106,7 @@ get_ceRNA <- function(disease_name,
 
     # Turn columns to numeric and remove NA values
     new <- new %>%
-      mutate_at(c("betweeness", "eigenvector", "node_degree", "run.dataset.dataset_ID", "run.run_ID"), as.numeric) %>%
+      mutate_at(c("betweenness", "eigenvector", "node_degree", "run.dataset.dataset_ID", "run.run_ID"), as.numeric) %>%
       mutate_at(c("gene.ensg_number", "gene.gene_symbol"), as.character)
     return(new)
   }

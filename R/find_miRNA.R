@@ -6,7 +6,6 @@
 #'                     Fuzzy search available.
 #' @param ensg_number A vector of ensg number(s). If ensg number is set, gene symbol and gene type must be NULL. One of the three identifiers must be provided.
 #' @param gene_symbol A vector of gene symbol(s). If gene symbol is set, ensg number and gene type must be NULL. One of the three identifiers must be provided.
-#' @param gene_type Defines the type of gene of interest. One out of [3prime_overlapping_ncRNA, antisense, antisense_RNA, bidirectional_promoter_lncRNA, IG_C_gene, IG_C_pseudogene, IG_V_gene, IG_V_pseudogene, lincRNA, macro_lncRNA, miRNA, misc_RNA, Mt_rRNA, polymorphic_pseudogene, processed_pseudogene, processed_transcript, protein_coding, pseudogene, ribozyme, rRNA, rRNA_pseudogene, scaRNA, scRNA, sense_intronic, sense_overlapping, snoRNA, snRNA, TEC, TR_C_gene, TR_V_gene, TR_V_pseudogene, transcribed_processed_pseudogene, transcribed_unitary_pseudogene, transcribed_unprocessed_pseudogene, translated_processed_pseudogene, unitary_pseudogene, unprocessed_pseudogene, vaultRNA].
 #' @param between If false (default), all interactions where one of the interaction partners fits the given genes of interest
 #'                will be considered. If true, just interactions between the genes of interest will be considered.
 #'
@@ -23,7 +22,6 @@
 get_sponged_miRNA <- function(disease_name,
                        ensg_number = NULL,
                        gene_symbol = NULL,
-                       gene_type = NULL,
                        between = FALSE){
 
   # all checks will be done from the API and its unit tests!
@@ -41,18 +39,6 @@ get_sponged_miRNA <- function(disease_name,
   }
   if(!is.null(gene_symbol)) {
     full_url = paste(full_url, "gene_symbol=", paste(gene_symbol, collapse=",", sep=""), "&", sep="")
-  }
-  if(!is.null(gene_type)){
-    types <- c("3prime_overlapping_ncRNA", "antisense", "antisense_RNA", "bidirectional_promoter_lncRNA", "IG_C_gene", "IG_C_pseudogene",
-               "IG_V_gene", "IG_V_pseudogene", "lincRNA", "macro_lncRNA", "miRNA", "misc_RNA", "Mt_rRNA", "polymorphic_pseudogene",
-               "processed_pseudogene", "processed_transcript", "protein_coding", "pseudogene", "ribozyme", "rRNA", "rRNA_pseudogene",
-               "scaRNA", "scRNA", "sense_intronic", "sense_overlapping", "snoRNA", "snRNA", "TEC", "TR_C_gene", "TR_V_gene", "TR_V_pseudogene",
-               "transcribed_processed_pseudogene", "transcribed_unitary_pseudogene", "transcribed_unprocessed_pseudogene",
-               "translated_processed_pseudogene", "unitary_pseudogene", "unprocessed_pseudogene", "vaultRNA")
-    if(gene_type %in% types)
-      full_url = paste(full_url, "gene_type=", gene_type, "&", sep="")
-    else
-      stop(paste("Gene_type:", gene_type," is not an allowed value. Please check the help page for further information."))
   }
   if(!is.logical(between)){
     stop(paste("Between parameter is not logical!"))
@@ -82,8 +68,8 @@ get_sponged_miRNA <- function(disease_name,
 
     # Turn columns to numeric and remove NA values
     new <- new %>%
-      mutate_at(c("interactions_genegene.run.run_ID"), as.numeric) %>%
-      mutate_at(c("mirna.hs_nr", "mirna.mir_ID"), as.character)
+      mutate_at(c("coefficient", "run.run_ID"), as.numeric) %>%
+      mutate_at(c("mirna.hs_nr", "mirna.mir_ID", "gene.ensg_number","gene.gene_symbol", "run.dataset"), as.character)
     return(new)
   }
 }
