@@ -9,24 +9,21 @@ get_specific_miRNAInteraction(
   mimat_number = NULL,
   hs_number = NULL,
   limit = 100,
-  offset = NULL,
-  information = FALSE
+  offset = NULL
 )
 }
 \arguments{
 \item{disease_name}{Name of the specific cancer type/dataset. If default is set, all available datasets with corresponding informations are shown.
 Fuzzy search available.}
 
-\item{mimat_number}{A vector of mimat_number(s). If mimat_number is set, hs_number must be NULL.}
+\item{mimat_number}{Mimat_number of interest. If mimat_number is set, hs_number must be NULL.}
 
-\item{hs_number}{A vector of hs_number(s). If hs_number is set, mimat_number must be NULL.}
+\item{hs_number}{hs_number of interest. If hs_number is set, mimat_number must be NULL.}
 
 \item{limit}{Number of results that should be shown. Default value is 100 and can be up to 1000.
 For more results please use batches, the provided offset parameter or download the whole dataset.}
 
 \item{offset}{Starting point from where results should be shown.}
-
-\item{information}{All available information about miRNA displayed (TRUE) or just ensg number (FALSE, default).}
 }
 \value{
 A data_frame containing all ceRNA interactions fitting the parameters.
@@ -37,13 +34,13 @@ Get all ceRNA interactions where miRNA(s) of interest (different identifiers ava
 \examples{
 # Retrieve all possible ceRNA interactions where miRNA of interest contribute to
 get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
-                              mimat_number = c("MIMAT0000076", "MIMAT0000261"),
-                              limit = 15, information = FALSE)
+                              mimat_number = "MIMAT0000076",
+                              limit = 15)
 \dontrun{
 # Do not use both possible identifiers at once
 get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
-                              mimat_number =c("MIMAT0000076", "MIMAT0000261"),
-                              hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"),
-                              limit = 15, information = FALSE)
+                              mimat_number ="MIMAT0000076",
+                              hs_number = "hsa-miR-21-5p",
+                              limit = 15)
 }
 }
