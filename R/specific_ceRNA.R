@@ -6,6 +6,8 @@
 #'
 #' @param disease_name Name of the specific cancer type/dataset. If default is set, all available datasets with corresponding informations are shown.
 #'                     Fuzzy search available.
+#' @param ensg_number A vector of ensg number(s). If ensg number is set, gene symbol and gene type must be NULL. One of the three identifiers must be provided.
+#' @param gene_symbol A vector of gene symbol(s). If gene symbol is set, ensg number and gene type must be NULL. One of the three identifiers must be provided.
 #' @param gene_type Defines the type of gene of interest. One out of [3prime_overlapping_ncRNA, antisense, antisense_RNA, bidirectional_promoter_lncRNA, IG_C_gene, IG_C_pseudogene, IG_V_gene, IG_V_pseudogene, lincRNA, macro_lncRNA, miRNA, misc_RNA, Mt_rRNA, polymorphic_pseudogene, processed_pseudogene, processed_transcript, protein_coding, pseudogene, ribozyme, rRNA, rRNA_pseudogene, scaRNA, scRNA, sense_intronic, sense_overlapping, snoRNA, snRNA, TEC, TR_C_gene, TR_V_gene, TR_V_pseudogene, transcribed_processed_pseudogene, transcribed_unitary_pseudogene, transcribed_unprocessed_pseudogene, translated_processed_pseudogene, unitary_pseudogene, unprocessed_pseudogene, vaultRNA].
 #' @param minBetweenness Threshold of the betweenness.
 #' @param minNodeDegree Threshold of the degree.
@@ -28,6 +30,8 @@
 #' get_ceRNA(disease_name = "kidney clear cell carcinoma",
 #'           gene_type = "lincRNA", minBetweenness = 0.8)
 get_ceRNA <- function(disease_name,
+                      ensg_number=NULL,
+                      gene_symbol=NULL,
                       gene_type = NULL,
                       minBetweenness = NULL,
                       minNodeDegree = NULL,
@@ -45,6 +49,12 @@ get_ceRNA <- function(disease_name,
   # Create full url
   if (!is.null(disease_name)){
     full_url = paste(full_url, "disease_name=", disease_name,"&", sep="")
+  }
+  if (!is.null(ensg_number)){
+    full_url = paste(full_url, "ensg_number=", paste(ensg_number, collapse=",", sep=""), "&", sep="")
+  }
+  if(!is.null(gene_symbol)) {
+    full_url = paste(full_url, "gene_symbol=", paste(gene_symbol, collapse=",", sep=""), "&", sep="")
   }
   if(!is.null(gene_type)){
     types <- c("3prime_overlapping_ncRNA", "antisense", "antisense_RNA", "bidirectional_promoter_lncRNA", "IG_C_gene", "IG_C_pseudogene",
