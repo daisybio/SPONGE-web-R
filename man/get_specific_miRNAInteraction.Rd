@@ -8,6 +8,12 @@ get_specific_miRNAInteraction(
   disease_name = NULL,
   mimat_number = NULL,
   hs_number = NULL,
+  pValue = 0.05,
+  pValueDirection = "<",
+  mscor = NULL,
+  mscorDirection = "<",
+  correlation = NULL,
+  correlationDirection = "<",
   limit = 100,
   offset = NULL
 )
@@ -19,6 +25,18 @@ Fuzzy search available.}
 \item{mimat_number}{Mimat_number of interest. If mimat_number is set, hs_number must be NULL.}
 
 \item{hs_number}{hs_number of interest. If hs_number is set, mimat_number must be NULL.}
+
+\item{pValue}{Threshold of the FDR adjusted p-value. Default is 0.05.}
+
+\item{pValueDirection}{Direction of the FDR adjusted p-value threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".}
+
+\item{mscor}{Threshold of the 'multiple sensitivity correlation' (mscor).}
+
+\item{mscorDirection}{Direction of the mscor threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".}
+
+\item{correlation}{Threshold of the correlation.}
+
+\item{correlationDirection}{Direction of the correlation threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".}
 
 \item{limit}{Number of results that should be shown. Default value is 100 and can be up to 1000.
 For more results please use batches, the provided offset parameter or download the whole dataset.}
