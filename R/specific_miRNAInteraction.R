@@ -6,6 +6,12 @@
 #'                     Fuzzy search available.
 #' @param mimat_number Mimat_number of interest. If mimat_number is set, hs_number must be NULL.
 #' @param hs_number hs_number of interest. If hs_number is set, mimat_number must be NULL.
+#' @param pValue Threshold of the FDR adjusted p-value. Default is 0.05.
+#' @param pValueDirection Direction of the FDR adjusted p-value threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".
+#' @param mscor Threshold of the 'multiple sensitivity correlation' (mscor).
+#' @param mscorDirection Direction of the mscor threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".
+#' @param correlation Threshold of the correlation.
+#' @param correlationDirection Direction of the correlation threshold (<, >). Must be set if pValue is set. Possible values are: "<", ">".
 #' @param limit Number of results that should be shown. Default value is 100 and can be up to 1000.
 #'              For more results please use batches, the provided offset parameter or download the whole dataset.
 #' @param offset Starting point from where results should be shown.
@@ -33,6 +39,12 @@
 get_specific_miRNAInteraction <- function(disease_name = NULL,
                                   mimat_number = NULL,
                                   hs_number = NULL,
+                                  pValue = 0.05,
+                                  pValueDirection = "<",
+                                  mscor = NULL,
+                                  mscorDirection = "<",
+                                  correlation = NULL,
+                                  correlationDirection = "<",
                                   limit = 100,
                                   offset = NULL){
 
@@ -51,6 +63,33 @@ get_specific_miRNAInteraction <- function(disease_name = NULL,
   }
   if(!is.null(hs_number)) {
     full_url = paste(full_url, "hs_number=", hs_number, "&", sep="")
+  }
+  if(!is.null(pValue)){
+    full_url = paste(full_url, "pValue=", pValue,"&", sep="")
+  }
+  if(!is.null(pValueDirection)){
+    if(pValueDirection %in% c("<",">"))
+      full_url <- paste(full_url, "pValueDirection=", pValueDirection, "&", sep="")
+    else
+      stop(paste("pValueDirection:", pValueDirection," is not an allowed value. Please check the help page for further information."))
+  }
+  if(!is.null(mscor)){
+    full_url = paste(full_url, "mscor=", mscor,"&", sep="")
+  }
+  if(!is.null(mscorDirection)){
+    if(pValueDirection %in% c("<",">"))
+      full_url <- paste(full_url, "mscorDirection=", mscorDirection, "&", sep="")
+    else
+      stop(paste("mscorDirection:", mscorDirection," is not an allowed value. Please check the help page for further information."))
+  }
+  if(!is.null(correlation)){
+    full_url = paste(full_url, "correlation=", correlation,"&", sep="")
+  }
+  if(!is.null(correlationDirection)){
+    if(pValueDirection %in% c("<",">"))
+      full_url <- paste(full_url, "correlationDirection=", correlationDirection, "&", sep="")
+    else
+      stop(paste("correlationDirection:", correlationDirection," is not an allowed value. Please check the help page for further information."))
   }
   if (!is.null(limit)){
     full_url <- paste(full_url, "limit=", limit, "&", sep="")
