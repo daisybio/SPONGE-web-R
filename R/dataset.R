@@ -1,3 +1,59 @@
+#' Subtype of Cancer Function
+#'
+#' @description Get information about all available subtypes of a specific cancer type.
+#'
+#' @param disease_name The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
+#'                     Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
+#'
+#' @return Information about subtypes of a specific cancer type.
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @importFrom utils URLencode
+#' @importFrom dplyr mutate_at %>%
+#' @importFrom httr GET content headers
+#'
+#' @examples
+#' get_subtypesForCancer("kidney clear cell carcinoma")
+#'
+#' }
+get_subtypesForCancer <- function(disease_name) {
+  # Base URL path
+  base_url = paste("http://localhost:5000", "/dataset", sep="")
+
+  # Create full url
+  full_url = paste0(base_url, "?disease_name=", disease_name)
+
+  # Encode the URL with characters for each space.
+  full_url <- URLencode(full_url)
+
+  # Convert to text object using httr
+  url_obj <- GET(full_url)
+
+  # Parse url object
+  raise <- content(url_obj, as="text", encoding = "UTF-8")
+
+  #parse JSON
+  new <- fromJSON(raise)
+  abbrv <- new$disease_name_abbreviation
+  if(!is.na(abbrv)) {
+    new <- get_datasetInformation(abbrv)
+  }
+  else {
+    return
+  }
+  # Determine if a url object returns '404 Not Found'
+  if(headers(url_obj)$`content-type` == "application/problem+json")
+    stop(paste("API response is empty. Reason: ", new$detail))
+  else {
+    # Turn columns to numeric and remove NA values
+    new <- new %>%
+      mutate_at(c( "dataset_ID"), as.numeric)
+    return(new)
+  }
+}
+
+
 #' Dataset Information Function
 #'
 #' @description Get information about all available datasets to start browsing or search for a specific cancer type/dataset.
@@ -21,7 +77,7 @@
 #' }
 get_datasetInformation <- function(disease_name=NULL) {
   # Base URL path
-  base_url = paste(pkg.env$API.url, "/dataset", sep="")
+  base_url = paste("http://localhost:5000", "/dataset", sep="")
 
   # Create full url
   if (!is.null(disease_name)){
