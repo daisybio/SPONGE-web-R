@@ -8,7 +8,8 @@
 #' @param gene_symbol A vector of gene symbol(s). If gene symbol is set, ensg number and gene type must be NULL. One of the three identifiers must be provided.
 #' @param between If false (default), all interactions where one of the interaction partners fits the given genes of interest
 #'                will be considered. If true, just interactions between the genes of interest will be considered.
-#'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return A data_frame containing all found miRNAs.
 #' @export
 #'
@@ -22,7 +23,8 @@
 get_sponged_miRNA <- function(disease_name,
                        ensg_number = NULL,
                        gene_symbol = NULL,
-                       between = FALSE){
+                       between = FALSE,
+                       sponge_db_version = pkg.env$LATEST) {
 
   # all checks will be done from the API and its unit tests!
 
@@ -45,6 +47,8 @@ get_sponged_miRNA <- function(disease_name,
   } else {
     full_url <- paste(full_url, "between=", between, "&", sep="")
   }
+
+  full_url <- paste(full_url, "sponge_db_version=", sponge_db_version, sep="")
 
 
   # Encode the URL with characters for each space.

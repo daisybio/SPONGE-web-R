@@ -2,6 +2,8 @@
 #'
 #' @description Function return current statistic about database - amount of shared miRNA, significant and insignificant interactions per dataset
 #'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return Overview of interaction counts about all or specific dataset as data_frame.
 #' @export
 #'
@@ -12,9 +14,11 @@
 #'
 #' @examples
 #' get_overallCounts()
-get_overallCounts <- function() {
+get_overallCounts <- function(sponge_db_version = pkg.env$LATEST) {
   # Base URL path
   full_url = paste(pkg.env$API.url, "/getOverallCounts", sep="")
+
+  full_url <- paste(full_url, "?sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)

@@ -8,7 +8,8 @@ library(data.table)
 #'
 #' @param disease_name The name of the Cancer Type of interest as string. If default is set, only cancer types.
 #' @param level Either "gene" or "transcript", which was introduced in SPONGEdb version 2. The default is "gene".
-#'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return list containing pairwise scores and 2D coordinates for all Cancer Types and, if available, the Types Subtypes.
 #' @export
 #'
@@ -19,7 +20,7 @@ library(data.table)
 #' @examples
 #' # Get gene level scores and 2D coordinates for all Cancer Types and all Subtypes of "Breast invasive carcinoma".
 #' get_network_results(disease_name = "Breast invasive carcinoma", level = "gene")
-get_network_results <- function(disease_name = "Pan-cancer", level = "gene"){
+get_network_results <- function(disease_name = "Pan-cancer", level = "gene", sponge_db_version = pkg.env$LATEST) {
   # all checks will be done from the API and its unit tests!
   # Base URL path
   base_url = paste(pkg.env$API.url, "/networkResults?", sep="")
@@ -27,6 +28,8 @@ get_network_results <- function(disease_name = "Pan-cancer", level = "gene"){
   # Create full url
   full_url = paste(full_url, "disease_name=", disease_name, "&", sep="")
   full_url = paste(full_url, "level=", level, "&", sep="")
+
+  full_url = paste(full_url, "sponge_db_version=", sponge_db_version, sep="")
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
   message(full_url)

@@ -4,7 +4,8 @@
 #'
 #' @param disease_name The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
 #'                     Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
-#'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return Information about subtypes of a specific cancer type.
 #' @export
 #'
@@ -17,12 +18,12 @@
 #' get_subtypesForCancer("kidney clear cell carcinoma")
 #'
 #' }
-get_subtypesForCancer <- function(disease_name) {
+get_subtypesForCancer <- function(disease_name, sponge_db_version=pkg.env$LATEST) {
   # Base URL path
-  base_url = paste("http://localhost:5000", "/dataset", sep="")
+  base_url = paste(pkg.env$API.url, "/datasets", sep="")
 
   # Create full url
-  full_url = paste0(base_url, "?disease_name=", disease_name)
+  full_url = paste0(base_url, "?disease_name=", disease_name, "&sponge_db_version=", sponge_db_version)
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
@@ -37,7 +38,7 @@ get_subtypesForCancer <- function(disease_name) {
   new <- fromJSON(raise)
   abbrv <- new$disease_name_abbreviation
   if(!is.na(abbrv)) {
-    new <- get_datasetInformation(abbrv)
+    new <- get_datasetInformation(abbrv, sponge_db_version)
   }
   else {
     return
@@ -60,7 +61,8 @@ get_subtypesForCancer <- function(disease_name) {
 #'
 #' @param disease_name The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
 #'                     Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
-#'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return Information about all or specific dataset as data_frame.
 #' @export
 #'
@@ -75,15 +77,15 @@ get_subtypesForCancer <- function(disease_name) {
 #' \dontrun{
 #' get_datasetInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
 #' }
-get_datasetInformation <- function(disease_name=NULL) {
+get_datasetInformation <- function(disease_name=NULL, sponge_db_version=pkg.env$LATEST) {
   # Base URL path
-  base_url = paste("http://localhost:5000", "/dataset", sep="")
+  base_url = paste(pkg.env$API.url, "/dataset", sep="")
 
   # Create full url
   if (!is.null(disease_name)){
-    full_url = paste0(base_url, "?disease_name=", disease_name)
+    full_url = paste0(base_url, "?disease_name=", disease_name, "&sponge_db_version=", sponge_db_version)
   } else {
-    full_url = base_url
+    full_url = paste0(base_url, "?sponge_db_version=", sponge_db_version)
   }
 
   # Encode the URL with characters for each space.
@@ -115,6 +117,7 @@ get_datasetInformation <- function(disease_name=NULL) {
 #'
 #' @param disease_name Name of the specific cancer type/dataset as string.
 #' Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return Run information about dataset disease_name as data_frame.
 #' @export
@@ -130,14 +133,14 @@ get_datasetInformation <- function(disease_name=NULL) {
 #' \dontrun{
 #' get_runInformation(c("kidney clear cell carcinoma", "kidney papillary cell carcinoma"))
 #' }
-get_runInformation <- function(disease_name){
+get_runInformation <- function(disease_name, sponge_db_version=pkg.env$LATEST) {
   # check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
 
   # Base URL path
-  base_url = paste(pkg.env$API.url, "/dataset/runInformation", sep="")
-  full_url = paste0(base_url, "?disease_name=", disease_name)
+  base_url = paste(pkg.env$API.url, "/dataset/spongeRunInformation", sep="")
+  full_url = paste0(base_url, "?disease_name=", disease_name, "&sponge_db_version=", sponge_db_version)
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)

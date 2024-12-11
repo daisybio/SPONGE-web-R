@@ -6,6 +6,7 @@
 #'                     Fuzzy search is available.
 #' @param ensg_number A vector of ensg number(s). If ensg_number is set, gene_symbol must be NULL.
 #' @param gene_symbol A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return A data_frame with gene information and corresponding log rank test pValue. For raw data use function \code{\link[spongeWeb]{get_survAna_rates}}
 #' @export
@@ -30,7 +31,7 @@
 #'                     ensg_number = c("ENSG00000259090","ENSG00000217289"),
 #'                     gene_symbol = c("SEPT7P1","TIGAR"))
 #' }
-get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = NULL){
+get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = NULL, sponge_db_version = pkg.env$LATEST){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -49,6 +50,8 @@ get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = 
     full_url = paste(base_url, "?disease_name=", disease_name,"&gene_symbol=", paste(gene_symbol, collapse=",", sep=""), sep="")
   } else
     full_url = paste(base_url, "?disease_name=", disease_name, sep="")
+
+  full_url <- paste(full_url, "&sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
@@ -86,6 +89,7 @@ get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = 
 #' @param ensg_number A vector of ensg number(s). If ensg_number is set, gene_symbol must be NULL. One of the two identifiers must be provided.
 #' @param gene_symbol A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.
 #' @param sample_ID A vector of sample_ID of the patient/sample of interest.
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return A data_frame with gene and patient/sample information and the "group information" encoded by column "overexpressed".
 #' Information about expression value of the gene (FALSE = underexpression, gene expression <= mean gene expression over all samples,
@@ -108,7 +112,7 @@ get_survAna_pValues <- function(disease_name, ensg_number = NULL, gene_symbol = 
 #'                     ensg_number = c("ENSG00000259090","ENSG00000217289"),
 #'                     gene_symbol = c("SEPT7P1","TIGAR"))
 #' }
-get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NULL, sample_ID = NULL){
+get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NULL, sample_ID = NULL. sponge_db_version = pkg.env$LATEST){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -130,6 +134,8 @@ get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NU
   if(!is.null(sample_ID)){
     full_url = paste(full_url, "&sample_ID=", paste(sample_ID, collapse = ",", sep=""), sep="")
   }
+
+  full_url <- paste(full_url, "&sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
@@ -164,6 +170,7 @@ get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NU
 #' @param disease_name The name of the dataset of interest as string. If default is set, all available datasets with corresponding informations are shown.
 #'                     Fuzzy search is available.
 #' @param sample_ID A vector of sample_ID of the patient/sample of interest.
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return A data_frame with clinical date of all available or specific sample/patient.
 #' @export
@@ -180,7 +187,7 @@ get_survAna_rates <- function(disease_name, ensg_number = NULL, gene_symbol = NU
 #' # Do not run function without disease.
 #' get_survAna_sampleInformation(sample_ID = c("TCGA-BP-4968","TCGA-B8-A54F"))
 #' }
-get_survAna_sampleInformation <- function(disease_name, sample_ID = NULL){
+get_survAna_sampleInformation <- function(disease_name, sample_ID = NULL, sponge_db_version = pkg.env$LATEST){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -193,6 +200,8 @@ get_survAna_sampleInformation <- function(disease_name, sample_ID = NULL){
   if(!is.null(sample_ID)){
     full_url = paste(full_url, "&sample_ID=", paste(sample_ID, collapse = ",", sep=""), sep="")
   }
+
+  full_url <- paste(full_url, "&sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)

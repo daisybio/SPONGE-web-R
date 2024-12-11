@@ -6,6 +6,7 @@
 #'                     Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
 #' @param ensg_number A vector of ensg number(s). If ensg_number is set, gene_symbol must be NULL.
 #' @param gene_symbol A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return A data_frame with gene expression values.
 #' @export
@@ -30,7 +31,7 @@
 #'                    ensg_number = c("ENSG00000259090","ENSG00000217289"),
 #'                    gene_symbol = c("SEPT7P1","TIGAR"))
 #' }
-get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL){
+get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NULL, sponge_db_version = pkg.env$LATEST){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -49,6 +50,8 @@ get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NU
    full_url = paste(base_url, "?disease_name=", disease_name,"&gene_symbol=", paste(gene_symbol, collapse=",", sep=""), sep="")
   } else
    full_url = paste(base_url, "?disease_name=", disease_name, sep="")
+
+  full_url <- paste(full_url, "&sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
@@ -85,6 +88,7 @@ get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NU
 #' Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
 #' @param mimat_number A vector of mimat_number(s). If mimat_number is set, hs_number must be NULL.
 #' @param hs_number A vector of hs_number(s). If hs_number is set, mimat_number must be NULL.
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return A data_frame with mirna expression values.
 #' @export
@@ -109,7 +113,7 @@ get_geneExprValues = function(disease_name, ensg_number = NULL, gene_symbol = NU
 #'                     mimat_number = c("MIMAT0000076", "MIMAT0000261"),
 #'                     hs_number = c("hsa-miR-21-5p", "hsa-miR-183-5p"))
 #' }
-get_mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NULL){
+get_mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NULL, sponge_db_version = pkg.env$LATEST){
   # Check if required paramter is given
   if(is.null(disease_name))
     stop("Required parameter disease_name is not given!")
@@ -119,7 +123,7 @@ get_mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NU
     stop("More than one identification paramter is given. Please choose one out of mimat_number or hs_number.")
 
   # Base URL path
-  base_url = paste(pkg.env$API.url, "/exprValue/getmirNA", sep="")
+  base_url = paste(pkg.env$API.url, "/exprValue/getmiRNA", sep="")
 
   # Create full url
   if (!is.null(mimat_number)){
@@ -129,6 +133,7 @@ get_mirnaExprValues = function(disease_name, mimat_number = NULL, hs_number = NU
   } else
     full_url = paste(base_url, "?disease_name=", disease_name, sep="")
 
+  full_url <- paste(full_url, "&sponge_db_version=", sponge_db_version, sep="")
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
 

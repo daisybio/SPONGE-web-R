@@ -15,6 +15,7 @@
 #' @param limit Number of results that should be shown. Default value is 100 and can be up to 1000.
 #'              For more results please use batches, the provided offset parameter or download the whole dataset.
 #' @param offset Starting point from where results should be shown.
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
 #'
 #' @return A data_frame containing all ceRNA interactions fitting the parameters.
 #' @export
@@ -46,7 +47,8 @@ get_specific_miRNAInteraction <- function(disease_name = NULL,
                                   correlation = NULL,
                                   correlationDirection = "<",
                                   limit = 100,
-                                  offset = NULL){
+                                  offset = NULL,
+                                  sponge_db_version = pkg.env$LATEST) {
 
   # all checks will be done from the API and its unit tests!
 
@@ -97,6 +99,8 @@ get_specific_miRNAInteraction <- function(disease_name = NULL,
   if(!is.null(offset)){
     full_url <- paste(full_url, "offset=", offset, "&", sep="")
   }
+
+  full_url <- paste(full_url, "sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)

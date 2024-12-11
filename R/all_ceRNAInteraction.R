@@ -19,7 +19,8 @@
 #'              For more results please use batches, the provided offset parameter or download the whole dataset.
 #' @param offset Starting point from where results should be shown.
 #' @param information All available information about genes displayed (TRUE) or just ensg number (FALSE, default).
-#'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return A data_frame containing all ceRNA interactions fitting the paramters.
 #' @export
 #'
@@ -49,7 +50,8 @@ get_all_ceRNAInteractions <- function(disease_name = NULL,
                                   descending = TRUE,
                                   limit = 100,
                                   offset = NULL,
-                                  information = FALSE){
+                                  information = FALSE,
+                                  sponge_db_version=config.LATEST){
 
   # all checks will be done from the API and its unit tests!
 
@@ -128,6 +130,8 @@ get_all_ceRNAInteractions <- function(disease_name = NULL,
   } else {
     full_url <- paste(full_url, "information=", information, "&", sep="")
   }
+
+  full_url <- paste(full_url, "sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)

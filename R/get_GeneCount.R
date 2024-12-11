@@ -6,7 +6,8 @@
 #' @param gene_symbol A vector of gene symbol(s). If gene_symbol is set, ensg_number must be NULL.
 #' @param minCountAll Defines the minimal number of times a gene has to be involved in the complete network (e.g. the degree of the corresponding node must be greater than minCountAll).
 #' @param minCountSign Defines the minimal number of times a gene has to be involved in significant (p.adj < 0.05) interactions in the network.
-#'
+#' @param sponge_db_version The version of the SPONGE database to be used. Default is set $pkg.env$LATEST.
+#' 
 #' @return A data_frame cotaining the amount of times a gene is involved in the complete network (equals to degree), column count_all, and in significant (FDR adjusted pValue < 0.05) interactions of the network, column count_sign.
 #' @export
 #'
@@ -22,7 +23,8 @@ get_geneCount <- function(disease_name = NULL,
                           ensg_number = NULL,
                           gene_symbol = NULL,
                           minCountAll = NULL,
-                          minCountSign = NULL){
+                          minCountSign = NULL,
+                          sponge_db_version = pkg.env$LATEST) {
 
   # all checks will be done from the API and its unit tests!
 
@@ -46,6 +48,8 @@ get_geneCount <- function(disease_name = NULL,
   if(!is.null(minCountSign)){
     full_url <- paste(full_url, "minCountSign=", minCountSign, "&", sep="")
   }
+
+  full_url <- paste(full_url, "sponge_db_version=", sponge_db_version, sep="")
 
   # Encode the URL with characters for each space.
   full_url <- URLencode(full_url)
